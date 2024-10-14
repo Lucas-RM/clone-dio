@@ -3,7 +3,7 @@ import logo from "../../assets/logo-dio.png";
 
 import { Button } from "../Button";
 
-import { Container, Row, Column, Wrapper, BuscarInputContainer, Menu, MenuRight, UserPicture, Input } from "./styles";
+import { Container, Row, Wrapper, BuscarInputContainer, Menu, MenuRight, Input } from "./styles";
 
 const Header = () => {
     return (
