@@ -2,6 +2,8 @@ import styled, {css}  from 'styled-components';
 
 export const ButtonContainer = styled.button`
 
+    font-family: 'Open Sans';
+    line-height: 1.35;
     background: #565656;
     border-radius: 22px;
     position: relative;
@@ -10,13 +12,20 @@ export const ButtonContainer = styled.button`
     padding: 2px 12px;
     min-width: 120px;
     width: 100%;
+    margin-left: 10px;
     
     ${({variant}) => variant !== "primary" && css`
 
         min-width: 167px;
         height: 33px;
+        margin-left: 0;
         
         background: #E4105D;
+
+        &:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
 
         &::after {
             content: '';
