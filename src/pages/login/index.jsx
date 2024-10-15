@@ -8,6 +8,8 @@ import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 
+import { api } from '../../services/api';
+
 import { Container, Wrapper, Column, Row, Title, TitleLogin, SubTitleLogin, EsqueciText, CriarText } from './styles';
 
 const schema = yup.object({
@@ -24,11 +26,25 @@ const Login = () => {
         mode: 'onChange'
     });
 
-    // const onSubmit = data => console.log(data);
-    
-    const handleClickSignIn = () => {
-        navigate('/feed');
-    };
+    const onSubmit = async (formData) => {
+		try {
+			const response = await api.get('/users', {
+                params: {
+                    email: formData.email,
+                    password: formData.password
+                }
+            });
+
+            if (response.data.length > 0) {
+                alert('Login realizado com sucesso!');
+                navigate('/feed');
+            } else {
+                alert('Falha no login. Verifique suas credenciais.');
+            }
+		} catch {
+			alert("Houve um erro, tente novamente.");
+		}
+	};
 
     return (<>
         <Header />
@@ -43,7 +59,7 @@ const Login = () => {
                 <Wrapper>
                     <TitleLogin>Faça seu cadastro</TitleLogin>
                     <SubTitleLogin>Faça seu login e make the change._</SubTitleLogin>
-                    <form onSubmit={ handleSubmit(handleClickSignIn) }>
+                    <form onSubmit={ handleSubmit(onSubmit) }>
                         <Input 
                             name="email"
                             errorMessage={ errors?.email?.message }
