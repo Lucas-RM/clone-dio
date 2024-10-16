@@ -10,7 +10,7 @@ import { Input } from '../../components/Input';
 
 import { api } from '../../services/api';
 
-import { Container, Wrapper, Column, Row, Title, TitleLogin, SubTitleLogin, EsqueciText, CriarText } from './styles';
+import { Container, Wrapper, Column, Row, Title, TitleLogin, SubTitleLogin, EsqueciText, CriarLink } from './styles';
 
 const schema = yup.object({
     email: yup.string().email("Esse e-mail não é válido").required("Campo obrigatório"),
@@ -45,6 +45,11 @@ const Login = () => {
 			alert("Houve um erro, tente novamente.");
 		}
 	};
+
+    const handleSignUpClick = (event) => {
+        event.preventDefault();
+        navigate('/signup');
+    };
 
     return (<>
         <Header />
@@ -82,7 +87,7 @@ const Login = () => {
                     </form>
                     <Row>
                         <EsqueciText>Esqueci minha senha</EsqueciText>
-                        <CriarText>Criar Conta</CriarText>
+                        <CriarLink hrefLang="/signup" onClick={ handleSignUpClick }>Criar Conta</CriarLink>
                     </Row>
                 </Wrapper>
             </Column>
